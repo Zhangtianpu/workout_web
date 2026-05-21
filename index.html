@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健身动作展示</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏋️ 健身动作展示</h1>
+            <p>选择运动类型，查看对应锻炼视频</p>
+        </header>
+
+        <div class="category-tabs">
+            <button class="category-tab active" data-category="aerobic">
+                <span class="tab-icon">🏃</span>
+                <span class="tab-text">有氧运动</span>
+            </button>
+            <button class="category-tab" data-category="anaerobic">
+                <span class="tab-icon">💪</span>
+                <span class="tab-text">无氧运动</span>
+            </button>
+            <button class="category-tab" data-category="functional">
+                <span class="tab-icon">⚡</span>
+                <span class="tab-text">功能性训练</span>
+            </button>
+        </div>
+
+        <div id="aerobic-section" class="category-section">
+            <div class="controls">
+                <div class="control-group">
+                    <label>运动项目：</label>
+                    <div class="aerobic-switcher">
+                        <button class="aerobic-btn active" data-type="running">跑步</button>
+                        <button class="aerobic-btn" data-type="jumping">跳绳</button>
+                        <button class="aerobic-btn" data-type="hiit">HIIT</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <div id="aerobic-placeholder" class="placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p>👈 请选择运动项目</p>
+                </div>
+
+                <div id="aerobic-content" style="display: none;">
+                    <div class="current-selection">
+                        <span class="selection-tag" id="aerobic-tag-type">跑步</span>
+                    </div>
+
+                    <div class="video-header">
+                        <h2 class="video-title" id="aerobic-title">运动项目</h2>
+                    </div>
+
+                    <div class="video-container">
+                        <iframe id="aerobic-frame" src="" allowfullscreen="true" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    </div>
+
+                    <div class="tips">
+                        <h3>💡 训练提示</h3>
+                        <ul id="aerobic-tips-list">
+                            <li>动作要标准，避免受伤</li>
+                            <li>循序渐进，不要急于求成</li>
+                            <li>注意呼吸节奏</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="anaerobic-section" class="category-section" style="display: none;">
+            <div class="controls">
+                <div class="control-group">
+                    <label>性别：</label>
+                    <div class="gender-switcher">
+                        <button class="gender-btn active" data-gender="male">👨 男性</button>
+                        <button class="gender-btn" data-gender="female">👩 女性</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>器械：</label>
+                    <div class="equipment-switcher">
+                        <button class="equipment-btn active" data-equipment="bodyweight">自重</button>
+                        <button class="equipment-btn" data-equipment="dumbbell">哑铃</button>
+                        <button class="equipment-btn" data-equipment="barbell">杠铃</button>
+                        <button class="equipment-btn" data-equipment="band">弹力带</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="body-diagram">
+                    <h2>选择训练部位</h2>
+                    <div class="gender-indicator">
+                        当前：<span id="gender-text">男性</span>训练方案
+                    </div>
+                    
+                    <svg class="body-svg svg-transition" id="male-body" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse class="body-outline" cx="100" cy="35" rx="28" ry="32"/>
+                        
+                        <path class="body-part" d="M55,75 L145,75 L150,130 L50,130 Z" data-part="chest"/>
+                        <text class="body-label" x="100" y="108" text-anchor="middle">胸部</text>
+                        
+                        <path class="body-part" d="M50,135 L150,135 L155,195 L45,195 Z" data-part="back"/>
+                        <text class="body-label" x="100" y="170" text-anchor="middle">背部</text>
+                        
+                        <path class="body-part" d="M25,75 L55,75 L50,130 L20,105 Z" data-part="shoulders"/>
+                        <path class="body-part" d="M175,75 L145,75 L150,130 L180,105 Z" data-part="shoulders"/>
+                        <text class="body-label" x="35" y="95" text-anchor="middle" font-size="10">肩</text>
+                        <text class="body-label" x="165" y="95" text-anchor="middle" font-size="10">肩</text>
+                        
+                        <path class="body-part" d="M20,110 L50,135 L45,205 L15,180 Z" data-part="arms"/>
+                        <path class="body-part" d="M180,110 L150,135 L155,205 L185,180 Z" data-part="arms"/>
+                        <text class="body-label" x="30" y="150" text-anchor="middle" font-size="10">手臂</text>
+                        <text class="body-label" x="170" y="150" text-anchor="middle" font-size="10">手臂</text>
+                        
+                        <path class="body-part" d="M65,200 L135,200 L130,265 L70,265 Z" data-part="abs"/>
+                        <text class="body-label" x="100" y="238" text-anchor="middle">腹部</text>
+                        
+                        <path class="body-part" d="M70,270 L100,270 L95,375 L60,375 Z" data-part="legs"/>
+                        <path class="body-part" d="M130,270 L100,270 L105,375 L140,375 Z" data-part="legs"/>
+                        <text class="body-label" x="77" y="325" text-anchor="middle" font-size="10">腿部</text>
+                        <text class="body-label" x="123" y="325" text-anchor="middle" font-size="10">腿部</text>
+                    </svg>
+
+                    <svg class="body-svg female svg-transition" id="female-body" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <ellipse class="body-outline" cx="100" cy="35" rx="25" ry="30"/>
+                        
+                        <path class="body-part" d="M65,75 L135,75 L140,125 L60,125 Z" data-part="chest"/>
+                        <text class="body-label" x="100" y="105" text-anchor="middle">胸部</text>
+                        
+                        <path class="body-part" d="M60,130 L140,130 L145,190 L55,190 Z" data-part="back"/>
+                        <text class="body-label" x="100" y="165" text-anchor="middle">背部</text>
+                        
+                        <path class="body-part" d="M30,75 L65,75 L60,125 L25,100 Z" data-part="shoulders"/>
+                        <path class="body-part" d="M170,75 L135,75 L140,125 L175,100 Z" data-part="shoulders"/>
+                        <text class="body-label" x="40" y="92" text-anchor="middle" font-size="10">肩</text>
+                        <text class="body-label" x="160" y="92" text-anchor="middle" font-size="10">肩</text>
+                        
+                        <path class="body-part" d="M25,105 L60,130 L55,200 L20,175 Z" data-part="arms"/>
+                        <path class="body-part" d="M175,105 L140,130 L145,200 L180,175 Z" data-part="arms"/>
+                        <text class="body-label" x="35" y="145" text-anchor="middle" font-size="10">手臂</text>
+                        <text class="body-label" x="165" y="145" text-anchor="middle" font-size="10">手臂</text>
+                        
+                        <path class="body-part" d="M55,195 L145,195 L155,260 L45,260 Z" data-part="abs"/>
+                        <text class="body-label" x="100" y="232" text-anchor="middle">腹部</text>
+                        
+                        <path class="body-part" d="M50,265 L95,265 L90,375 L45,375 Z" data-part="legs"/>
+                        <path class="body-part" d="M150,265 L105,265 L110,375 L155,375 Z" data-part="legs"/>
+                        <text class="body-label" x="67" y="325" text-anchor="middle" font-size="10">腿部</text>
+                        <text class="body-label" x="133" y="325" text-anchor="middle" font-size="10">腿部</text>
+                    </svg>
+                </div>
+
+                <div class="video-section">
+                    <div id="video-placeholder" class="placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p>👈 请点击左侧人体部位选择训练项目</p>
+                    </div>
+
+                    <div id="video-content" style="display: none;">
+                        <div class="current-selection" id="selection-tags">
+                            <span class="selection-tag" id="tag-gender">男性</span>
+                            <span class="selection-tag" id="tag-equipment">自重</span>
+                            <span class="selection-tag" id="tag-part">胸部</span>
+                        </div>
+
+                        <div class="video-header">
+                            <h2 class="video-title" id="part-title">训练部位</h2>
+                        </div>
+
+                        <div class="video-container">
+                            <iframe id="video-frame" src="" allowfullscreen="true" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                        </div>
+
+                        <div class="tips">
+                            <h3>💡 训练提示</h3>
+                            <ul id="tips-list">
+                                <li>动作要标准，避免受伤</li>
+                                <li>循序渐进，不要急于求成</li>
+                                <li>注意呼吸节奏</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="functional-section" class="category-section" style="display: none;">
+            <div class="controls">
+                <div class="control-group">
+                    <label>训练项目：</label>
+                    <div class="functional-switcher">
+                        <button class="functional-btn active" data-type="jump">弹跳力</button>
+                        <button class="functional-btn" data-type="endurance">耐力</button>
+                        <button class="functional-btn" data-type="reaction">反应力</button>
+                        <button class="functional-btn" data-type="coordination">协调性</button>
+                        <button class="functional-btn" data-type="explosive">爆发力</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <div id="functional-placeholder" class="placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p>👈 请选择训练项目</p>
+                </div>
+
+                <div id="functional-content" style="display: none;">
+                    <div class="current-selection">
+                        <span class="selection-tag" id="functional-tag-type">弹跳力</span>
+                    </div>
+
+                    <div class="video-header">
+                        <h2 class="video-title" id="functional-title">训练项目</h2>
+                    </div>
+
+                    <div class="video-container">
+                        <iframe id="functional-frame" src="" allowfullscreen="true" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    </div>
+
+                    <div class="tips">
+                        <h3>💡 训练提示</h3>
+                        <ul id="functional-tips-list">
+                            <li>动作要标准，避免受伤</li>
+                            <li>循序渐进，不要急于求成</li>
+                            <li>注意呼吸节奏</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data/videos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
